@@ -3,7 +3,8 @@ name: Release (ZMK reusable workflow)
 on:
   push:
     tags:
-      - "v*"   # 例: v1.0.0
+      - "v*"      # 例: v1.0.0
+      - "!v*-dya" # DYA Studio対応版(dya-studio_zmk-v0.4ブランチ)のタグは除外
 
 permissions:
   contents: write
