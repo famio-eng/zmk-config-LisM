@@ -3,7 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 自作キーボード LisMのファームウェアです。  
-DYA Studio対応版は[dya-studio_zmk-v0.3](https://github.com/4mplelab/zmk-config-LisM/tree/dya-studio_zmk-v0.3)ブランチから取得できます。
+DYA Studio対応版は[dya-studio_zmk-v0.4](https://github.com/4mplelab/zmk-config-LisM/tree/dya-studio_zmk-v0.4)ブランチから取得できます。
 
 ## 生成されるファームウェア一覧
 
@@ -13,7 +13,7 @@ DYA Studio対応版は[dya-studio_zmk-v0.3](https://github.com/4mplelab/zmk-conf
 | `lism_left_peripheral_4waystick.uf2`          | 左側 ペリフェラル 4wayスティック       |
 | `lism_left_peripheral_trackball.uf2`          | 左側 ペリフェラル トラックボール       |
 | `lism_right_central_non_trackball.uf2`        | 右側 セントラル 非トラックボール       |
-| `lism_right_central_non_trackball.uf2`        | 右側 セントラル 4wayスティック       |
+| `lism_right_central_4waystick.uf2`            | 右側 セントラル 4wayスティック       |
 | `lism_right_central_trackball.uf2`            | 右側 セントラル トラックボール         |
 | `lism_right_central_non_trackball_studio.uf2` | 右側 セントラル 非トラックボール (ZMK Studio 対応) |
 | `lism_right_central_4waystick_studio.uf2` | 右側 セントラル 4wayスティック (ZMK Studio 対応) |
