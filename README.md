@@ -12,12 +12,9 @@
 | `lism_left_peripheral_non_trackball.uf2`      | 左側 ペリフェラル 非トラックボール     |
 | `lism_left_peripheral_4waystick.uf2`          | 左側 ペリフェラル 4wayスティック       |
 | `lism_left_peripheral_trackball.uf2`          | 左側 ペリフェラル トラックボール       |
-| `lism_right_central_non_trackball.uf2`        | 右側 セントラル 非トラックボール       |
-| `lism_right_central_non_trackball.uf2`        | 右側 セントラル 4wayスティック       |
-| `lism_right_central_trackball.uf2`            | 右側 セントラル トラックボール         |
-| `lism_right_central_non_trackball_studio.uf2` | 右側 セントラル 非トラックボール (ZMK Studio 対応) |
-| `lism_right_central_4waystick_studio.uf2` | 右側 セントラル 4wayスティック (ZMK Studio 対応) |
-| `lism_right_central_trackball_studio.uf2`     | 右側 セントラル トラックボール (ZMK Studio 対応)   |
+| `lism_right_central_non_trackball.uf2`        | 右側 セントラル 非トラックボール |
+| `lism_right_central_4waystick.uf2`            | 右側 セントラル 4wayスティック |
+| `lism_right_central_trackball.uf2`            | 右側 セントラル トラックボール |
 | `settings_reset-seeeduino_xiao_ble-zmk.uf2`   | 設定リセット用                        |
 
 <details>
@@ -47,6 +44,11 @@ GitHub Actionsでのビルドは毎回2分-3分かかりますが、ローカル
     > ビルドはCPUコアを最大限に活用して並列実行できます。  
     > 特に多くのファームウェアを一度にビルドする際に効果的です。  
     > 並列数は自動でCPUコア数に設定されますが、環境変数 `PARALLEL` で指定することも可能です（例: `PARALLEL=4 make all_p`）。
+
+    > [!NOTE]
+    > このブランチのcentral向けファームウェアはすべて最初からDYA Studio対応(`studio-rpc-usb-uart`)を含んでいるため、
+    > `make` / `make all_p`（ZMK Studioサポートなし想定）と `make all_studio` / `make all_studio_p`（あり想定）は
+    > このブランチでは同じ7ファームウェアを生成します（`build.yaml`のartifact-nameに`studio`を含む個別エントリが無いため）。
 
     - **すべてのファームウェアを並列で一度に作成する場合(ZMK Studioサポートなし):**
       ```bash
