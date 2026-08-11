@@ -11,14 +11,16 @@ manifest:
   projects:
     - name: zmk
       remote: zmkfirmware
-      revision: v0.3.0
+      # main branch @ 2026-08-06 (Zephyr v4.1.0+zmk-fixes)
+      revision: 268b1b1e82150460f00fd701bcd08583d5c75d29
       import: app/west.yml
     - name: zmk-driver-paw3222
       remote: sekigon-gonnoc
       revision: main
     - name: zmk-rgbled-widget
       remote: caksoylar
-      revision: v0.3
+      # v0.3 support was split out to v0.3-branch; main now tracks ZMK main/Zephyr 4.x
+      revision: main
     - name: zmk-feature-charge-indicator
       remote: 4mplelab
       revision: main
