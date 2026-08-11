@@ -6,6 +6,8 @@
 #include <dt-bindings/zmk/pointing.h>
 #include <dt-bindings/zmk/mouse.h>
 #include <behaviors/runtime-sensor-rotate.dtsi>
+#include <behaviors/default_layer.dtsi>
+#include <dt-bindings/zmk_behavior_default_layer/default_layer.h>
 
 &mt {
     tapping-term-ms = <300>;
