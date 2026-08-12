@@ -4,7 +4,7 @@ on:
   push:
     branches: [ dya-studio_zmk-v0.4 ]
     tags-ignore:
-      - 'v*-dya' # リリース用タグはrelease.yml側でビルドするので重複を避ける
+      - 'v*-dya*' # リリース用タグはrelease.yml側でビルドするので重複を避ける
     paths:
       - '.github/workflows/build.yml'
       - 'boards/**'

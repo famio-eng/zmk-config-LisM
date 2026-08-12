@@ -3,7 +3,7 @@ name: Release (ZMK reusable workflow)
 on:
   push:
     tags:
-      - "v*-dya"   # 例: v1.0.0-dya
+      - "v*-dya*"   # 例: v1.0.0-dya, v1.2.0-dya.1
 
 permissions:
   contents: write
