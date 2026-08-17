@@ -143,7 +143,7 @@
         layer_6 {
             display-name = "Mac Layer";
             bindings = <
-                &kp Z            &trans             &trans                &trans                  &trans                                                 &trans       &trans           &trans             &trans              &kp X
+                &trans           &trans             &trans                &trans                  &trans                                                 &trans       &trans           &trans             &trans              &trans
                 &trans           &trans             &trans                &trans                  &trans                                                 &trans       &trans           &trans             &trans              &trans
                 &trans           &trans             &trans                &trans                  &trans                                                 &trans       &trans           &trans             &trans              &trans
                 &trans           &trans             &trans                &trans                  &trans            &trans              &trans           &trans       &trans           &trans             &trans              &trans
@@ -157,7 +157,7 @@
                 &trans           &trans             &trans                &trans                  &trans                                                 &trans       &trans           &trans             &trans              &trans
                 &trans           &trans             &trans                &trans                  &trans                                                 &trans       &trans           &trans             &trans              &trans
                 &trans           &trans             &trans                &trans                  &trans                                                 &trans       &trans           &trans             &trans              &trans
-                &trans           &trans             &trans                &trans                  &kp LG(SPACE)     &trans              &trans           &kp LG(SPACE)  &trans           &trans             &trans              &trans
+                &trans           &trans             &trans                &trans                  &trans            &trans              &trans           &kp LG(SPACE)  &trans           &trans             &trans              &trans
                                                     &trans                &trans                  &trans                                                 &trans       &trans           &trans
             >;
         };
