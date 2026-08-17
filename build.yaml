@@ -24,8 +24,8 @@ include:
     artifact-name: lism_right_central_4waystick
   - board: xiao_ble//zmk
     shield: lism_right rgbled_adapter
-    snippet: "lism-central studio-rpc-usb-uart trackball-central"
-    artifact-name: lism_right_central_trackball
+    snippet: "lism-central studio-rpc-usb-uart trackball-central zmk-usb-logging"
+    artifact-name: lism_right_central_trackball_debuglog
 
 # Central = Left
   # - board: xiao_ble//zmk
