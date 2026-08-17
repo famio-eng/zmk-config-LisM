@@ -155,7 +155,7 @@
                 &trans           &trans             &trans                &trans                  &trans                                                 &trans       &trans           &trans             &trans              &trans
                 &trans           &trans             &trans                &trans                  &trans                                                 &trans       &trans           &trans             &trans              &trans
                 &trans           &trans             &trans                &trans                  &trans                                                 &trans       &trans           &trans             &trans              &trans
-                &trans           &trans             &trans                &trans                  &kp LC(SPACE)     &trans              &trans           &kp LC(SPACE)  &trans           &trans             &trans              &trans
+                &trans           &trans             &trans                &trans                  &kp LG(SPACE)     &trans              &trans           &kp LG(SPACE)  &trans           &trans             &trans              &trans
                                                     &trans                &trans                  &trans                                                 &trans       &trans           &trans
             >;
         };
