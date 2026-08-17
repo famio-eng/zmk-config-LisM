@@ -43,11 +43,13 @@
         };
 
         /* BTプロファイル切替に連動してMacモード(MACレイヤー)をON/OFFする */
-        bt_p0: bt_p0 { label = "BT_P0"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&bt BT_SEL 0>, <&to 0>; };
-        bt_p1: bt_p1 { label = "BT_P1"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&bt BT_SEL 1>, <&to MAC>; };
-        bt_p2: bt_p2 { label = "BT_P2"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&bt BT_SEL 2>, <&to 0>; };
-        bt_p3: bt_p3 { label = "BT_P3"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&bt BT_SEL 3>, <&to 0>; };
-        bt_p4: bt_p4 { label = "BT_P4"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&bt BT_SEL 4>, <&to 0>; };
+        /* zmk-feature-default-layerの&df DF_SELはエンドポイントごとにデフォルトレイヤーを */
+        /* 記憶・自動再適用する(central.confのCONFIG_ZMK_DEFAULT_LAYER_MAX_INDEXで層6まで許可済み) */
+        bt_p0: bt_p0 { label = "BT_P0"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&bt BT_SEL 0>, <&df DF_SEL 0>; };
+        bt_p1: bt_p1 { label = "BT_P1"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&bt BT_SEL 1>, <&df DF_SEL MAC>; };
+        bt_p2: bt_p2 { label = "BT_P2"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&bt BT_SEL 2>, <&df DF_SEL 0>; };
+        bt_p3: bt_p3 { label = "BT_P3"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&bt BT_SEL 3>, <&df DF_SEL 0>; };
+        bt_p4: bt_p4 { label = "BT_P4"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&bt BT_SEL 4>, <&df DF_SEL 0>; };
     };
 
     behaviors {
