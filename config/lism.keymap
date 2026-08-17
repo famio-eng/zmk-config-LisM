@@ -31,6 +31,15 @@
 };
 
 / {
+    combos {
+        compatible = "zmk,combos";
+        /* DYA Studioのランタイムコンボはレイヤー判定が効かないため、Mac専用スクショは */
+        /* コンパイル済みの通常ZMKコンボとして実装(R+T、Mac Layer時のみ) */
+        screenshot_mac { bindings = <&kp LC(LS(LG(N4)))>; key-positions = <3 4>; layers = <MAC>; };
+    };
+};
+
+/ {
     macros {
         emoji: emoji_macro {
             compatible = "zmk,behavior-macro";
@@ -143,7 +152,7 @@
         layer_6 {
             display-name = "Mac Layer";
             bindings = <
-                &kp Z            &trans             &trans                &trans                  &trans                                                 &trans       &trans           &trans             &trans              &kp X
+                &trans           &trans             &trans                &trans                  &trans                                                 &trans       &trans           &trans             &trans              &trans
                 &trans           &trans             &trans                &trans                  &trans                                                 &trans       &trans           &trans             &trans              &trans
                 &trans           &trans             &trans                &trans                  &trans                                                 &trans       &trans           &trans             &trans              &trans
                 &trans           &trans             &trans                &trans                  &trans            &trans              &trans           &trans       &trans           &trans             &trans              &trans
