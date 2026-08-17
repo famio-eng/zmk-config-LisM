@@ -1,4 +1,5 @@
 #define ZMK_POINTING_DEFAULT_SCRL_VAL 200
+#define MAC 6
 
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
@@ -25,11 +26,18 @@
             compatible = "zmk,behavior-macro";
             label = "EMOJI";
             #binding-cells = <0>;
-            bindings = 
+            bindings =
                 <&macro_press &kp CAPSLOCK>,
                 <&macro_tap &kp E>,
                 <&macro_release &kp CAPSLOCK>;
         };
+
+        /* BTプロファイル切替に連動してMacモード(MACレイヤー)をON/OFFする */
+        bt_p0: bt_p0 { label = "BT_P0"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&bt BT_SEL 0>, <&to 0>; };
+        bt_p1: bt_p1 { label = "BT_P1"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&bt BT_SEL 1>, <&to MAC>; };
+        bt_p2: bt_p2 { label = "BT_P2"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&bt BT_SEL 2>, <&to 0>; };
+        bt_p3: bt_p3 { label = "BT_P3"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&bt BT_SEL 3>, <&to 0>; };
+        bt_p4: bt_p4 { label = "BT_P4"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&bt BT_SEL 4>, <&to 0>; };
     };
 
     behaviors {
@@ -100,7 +108,7 @@
         layer_4 {
             display-name = "Device Layer";
             bindings = <
-                &none            &none              &none                 &none                   &bt BT_CLR                                             &bt BT_SEL 0   &bt BT_SEL 1     &bt BT_SEL 2       &bt BT_SEL 3        &bt BT_SEL 4
+                &none            &none              &none                 &none                   &bt BT_CLR                                             &bt_p0         &bt_p1           &bt_p2             &bt_p3              &bt_p4
                 &none            &none              &none                 &none                   &none                                                  &none          &none            &none              &none               &none
                 &sys_reset       &none              &none                 &none                   &none                                                  &none          &none            &none              &none               &sys_reset
                 &bootloader      &bt BT_CLR_ALL     &none                 &none                   &none             &none               &studio_unlock   &none          &none            &none              &none               &bootloader
@@ -121,8 +129,7 @@
         };
 
         layer_6 {
-            status = "reserved";
-            display-name = "Brank Layer";
+            display-name = "Mac Layer";
             bindings = <
                 &trans           &trans             &trans                &trans                  &trans                                                 &trans       &trans           &trans             &trans              &trans
                 &trans           &trans             &trans                &trans                  &trans                                                 &trans       &trans           &trans             &trans              &trans
