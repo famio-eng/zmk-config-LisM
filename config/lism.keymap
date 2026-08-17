@@ -36,6 +36,7 @@
         /* DYA Studioのランタイムコンボはレイヤー判定が効かないため、Mac専用スクショは */
         /* コンパイル済みの通常ZMKコンボとして実装(R+T、Mac Layer時のみ) */
         screenshot_mac { bindings = <&kp LC(LS(LG(N4)))>; key-positions = <3 4>; layers = <MAC>; };
+        hankaku_zenkaku_mac { bindings = <&kp LG(SPACE)>; key-positions = <12 13>; layers = <MAC>; };
     };
 };
 
