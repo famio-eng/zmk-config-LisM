@@ -10,6 +10,8 @@ manifest:
       url-base: https://github.com/4mplelab
     - name: cormoran
       url-base: https://github.com/cormoran
+    - name: famio-eng
+      url-base: https://github.com/famio-eng
   projects:
     - name: zmk
       remote: cormoran
@@ -40,8 +42,11 @@ manifest:
       # main @ 2026-07-06 (zmk-v0.4.0.0 tag not published yet for this module)
       revision: 78f86df9e6c5edaf57bef3ccbd7f360cfdf49291
     - name: zmk-module-runtime-input-processor
-      remote: cormoran
-      revision: zmk-v0.4.0.0
+      remote: famio-eng
+      # fork of cormoran zmk-v0.4.0.0 + fix/click-extends-temp-layer:
+      # protected key press (e.g. mouse click) on an active temp-layer now
+      # also extends the deactivation timer, not just skip immediate kill
+      revision: c7a2ad9daac07430e99d822fcf2f9dcb87280f28
     - name: zmk-behavior-runtime-sensor-rotate
       remote: cormoran
       # main @ 2026-07-05 (zmk-v0.4.0.0 tag not published yet for this module)
