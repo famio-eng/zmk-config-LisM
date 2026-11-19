@@ -1,6 +1,7 @@
 #define ZMK_POINTING_DEFAULT_SCRL_VAL 200
 #define MAC 6
 #define MAC_NUMBER 7
+#define MAC_MARK 8
 
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
@@ -27,6 +28,10 @@
             if-layers = <MAC 2>;
             then-layer = <MAC_NUMBER>;
         };
+        mac_mark_layer {
+            if-layers = <MAC 3>;
+            then-layer = <MAC_MARK>;
+        };
     };
 };
 
@@ -37,6 +42,21 @@
         /* コンパイル済みの通常ZMKコンボとして実装(R+T、Mac Layer時のみ) */
         screenshot_mac { bindings = <&kp LC(LS(LG(N4)))>; key-positions = <3 4>; layers = <MAC>; };
         hankaku_zenkaku_mac { bindings = <&kp LG(SPACE)>; key-positions = <12 13>; layers = <MAC>; };
+
+        /* 2026-11-19: NVS破損からの復旧にあたり、実機のDYA Studioランタイムコンボ13個のうち */
+        /* Mac専用2個(上記で既存)を除く11個をコンパイル済みコンボとして焼き込み(settings_reset後も消えないように) */
+        esc_combo { bindings = <&kp ESC>; key-positions = <0 1>; };
+        back_combo { bindings = <&kp BACKSPACE>; key-positions = <8 9>; };
+        delete_combo { bindings = <&kp DELETE>; key-positions = <7 8>; };
+        insert_combo { bindings = <&kp INSERT>; key-positions = <6 7>; };
+        browser_back_combo { bindings = <&mkp MB4>; key-positions = <16 17>; };
+        browser_forward_combo { bindings = <&mkp MB5>; key-positions = <17 18>; };
+        /* Mac以外(screenshot_mac/hankaku_zenkaku_macと同じ位置だが対象レイヤーがMac Layerを除く全レイヤーで排他) */
+        screenshot_win_combo { bindings = <&kp PRINTSCREEN>; key-positions = <3 4>; layers = <0 1 2 3 4 5 7>; };
+        hanzen_win_combo { bindings = <&kp LANG5>; key-positions = <12 13>; layers = <0 1 2 3 4 5 7>; };
+        emoji_combo { bindings = <&kp LG(DOT)>; key-positions = <1 3>; };
+        tab_combo { bindings = <&kp TAB>; key-positions = <11 12>; };
+        mo_scroll_combo { bindings = <&mo 5>; key-positions = <36 37>; };
     };
 };
 
@@ -62,6 +82,28 @@
         bt_p2: bt_p2 { label = "BT_P2"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&bt BT_SEL 2>, <&macro_wait_time 150>, <&df DF_SEL 0>; };
         bt_p3: bt_p3 { label = "BT_P3"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&bt BT_SEL 3>, <&macro_wait_time 150>, <&df DF_SEL 0>; };
         bt_p4: bt_p4 { label = "BT_P4"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&bt BT_SEL 4>, <&macro_wait_time 150>, <&df DF_SEL 0>; };
+
+        /* 2026-11-19: Mark LayerのJIS記号復元用、LiNEA40(config/LiNEA40.keymap)の */
+        /* 同名マクロを3x5配置のままLisMに移植(famio-eng/zmk-config-LiNEA40参照) */
+        j_dq: j_dq { label = "DQ"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LS(N2)>; };
+        j_amp: j_amp { label = "AMP"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LS(N6)>; };
+        j_sq: j_sq { label = "SQ"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LS(N7)>; };
+        j_eq: j_eq { label = "EQ"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LS(MINUS)>; };
+        j_caret: j_cr { label = "CARET"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp EQUAL>; };
+        j_plus: j_plus { label = "PLUS"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp COLON>; };
+        j_tilde: j_tilde { label = "TILDE"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp PLUS>; };
+        j_yen: j_yen { label = "YEN"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp INT1>; };
+        j_pipe: j_pipe { label = "PIPE"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LS(INT1)>; };
+        j_at: j_at { label = "AT"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LBKT>; };
+        j_colon: j_colon { label = "COLON"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp SQT>; };
+        j_ast: j_ast { label = "AST"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LS(SQT)>; };
+        j_under: j_under { label = "UNDER"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LS(INT1)>; };
+        j_lbkt: j_lbkt { label = "L_BKT"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp RBKT>; };
+        j_lp: j_lp { label = "L_PAREN"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp ASTRK>; };
+        j_lbrc: j_lbrc { label = "L_BRACE"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp RIGHT_BRACE>; };
+        j_rbrc: j_rbrc { label = "R_BRACE"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LS(BSLH)>; };
+        j_rbkt: j_rbkt { label = "R_BKT"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp BACKSLASH>; };
+        j_rp: j_rp { label = "R_PAREN"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LEFT_PARENTHESIS>; };
     };
 
     behaviors {
@@ -83,14 +125,18 @@
     keymap {
         compatible = "zmk,keymap";
 
+        /* 2026-11-19: 右側centralのNVS破損・settings_resetで実機のDYA Studioライブ編集 */
+        /* (gitには存在しなかった実際の使用中キーマップ)が消失したため、過去セッションの */
+        /* スクリーンショットを基にdefault/Number/Device Layerを実機の配置に復元。 */
+        /* 詳細はdocs/restore-2026-11-19/ のスクショと変更報告を参照。 */
         default_layer {
             display-name = "Default Layer";
             bindings = <
-                &kp Q            &kp W              &kp E                 &kp R                   &kp T                                                  &kp Y          &kp U            &kp I              &kp O               &kp P
-                &kp A            &mt LALT S         &mt LSHIFT D          &mt LGUI F              &mt LCTRL G                                            &mt RCTRL H    &mt RGUI J       &mt RSHIFT K       &mt RALT L          &lt 3 SEMICOLON
-                &kp Z            &kp X              &kp C                 &kp V                   &kp B                                                  &kp N          &kp M            &kp COMMA          &kp DOT             &kp SLASH
-                &lt 4 DELETE     &tog 1             &lt 1 TAB             &msc SCRL_UP            &lt 2 SPACE       &lt 3 ESC           &lt 3 BACKSPACE  &lt 2 ENTER    &msc SCRL_UP     &kp F7             &kp F10             &lt 4 F12 
-                                                    &msc SCRL_LEFT        &msc SCRL_DOWN          &msc SCRL_RIGHT                                        &msc SCRL_LEFT &msc SCRL_DOWN   &msc SCRL_RIGHT
+                &lt 4 Q          &kp W              &kp E                 &kp R                   &kp T                                                  &kp Y          &kp U            &kp I              &kp O               &lt 4 P
+                &kp A            &kp S              &kp D                 &kp F                   &kp G                                                  &kp H          &lt 1 J          &lt 1 K            &kp L               &lt 5 BACKSPACE
+                &mt LSHIFT Z     &kp X              &kp C                 &kp V                   &kp B                                                  &kp N          &kp M            &mt LSHIFT COMMA   &mt LSHIFT DOT      &mt RSHIFT SLASH
+                &kp LCTRL        &kp LGUI           &kp LALT              &kp UP                  &kp LSHIFT        &kp LCTRL           &lt 2 ENTER      &lt 3 SPACE    &none            &none              &kp F10             &mo 4
+                                                    &kp LEFT              &kp DOWN                &kp RIGHT                                              &none          &none            &none
             >;
             sensor-bindings = <&rsr_scrl &rsr_scrl>;
         };
@@ -105,7 +151,7 @@
                 /* Mouse Layerがアクティブな間にこのキーを押すとLG(W)(Win+W=ウィジェット)が */
                 /* 優先されてDevice Layerに入れなくなるため、&transにしてDevice Layer */
                 /* アクセスを常に優先させる */
-                &trans           &trans             &trans                &trans                  &trans            &trans              &trans           &trans         &trans           &kp DOWN           &trans              &trans
+                &trans           &trans             &trans                &trans                  &trans            &trans              &trans           &trans         &trans           &none              &trans              &trans
                                                     &trans                &trans                  &trans                                                 &trans         &trans           &trans
             >;
         };
@@ -113,40 +159,48 @@
         layer_2 {
             display-name = "Number Layer";
             bindings = <
-                &trans           &kp NUMBER_7       &kp NUMBER_8          &kp NUMBER_9            &kp EQUAL                                              &kp F1         &kp F2           &kp F7             &kp F10             &kp RSHIFT
-                &kp ASTERISK     &mt LALT NUMBER_4  &mt LSHIFT NUMBER_5   &mt LGUI NUMBER_6       &mt LCTRL MINUS                                        &mkp MB1       &kp LEFT         &kp UP             &kp RIGHT           &kp RGUI
-                &kp SLASH        &kp NUMBER_1       &kp NUMBER_2          &kp NUMBER_3            &kp PLUS                                               &mkp MB2       &none            &kp DOWN           &none               &kp RALT
-                &trans           &kp DOT            &kp NUMBER_0          &kp UP                  &kp LANG2         &trans              &trans           &kp LANG1      &kp UP           &kp RS(RC(TAB))    &kp RC(TAB)         &kp F12 
-                                                    &kp LEFT              &kp DOWN                &kp RIGHT                                              &kp LEFT       &kp DOWN         &kp RIGHT
+                &kp F1           &kp F2             &kp F3                &kp F4                  &kp F5                                                 &kp NUMBER_7   &kp NUMBER_8     &kp NUMBER_9       &kp NUMBER_0        &kp KP_MULTIPLY
+                &kp F6           &kp F7             &kp F8                &kp F9                  &kp F10                                                &kp NUMBER_4   &kp NUMBER_5     &kp NUMBER_6       &kp KP_PLUS         &kp F10
+                &kp F11          &kp F12            &trans                &trans                  &trans                                                 &kp NUMBER_1   &kp NUMBER_2     &kp NUMBER_3       &kp KP_MINUS        &kp KP_DIVIDE
+                &trans           &trans             &kp LS(LG(LEFT))      &kp LG(UP)              &kp LS(LG(RIGHT)) &trans              &trans           &kp LANG1      &kp UP           &none              &kp RC(TAB)         &kp F12
+                                                    &kp LG(LEFT)          &kp LG(DOWN)            &kp LG(RIGHT)                                          &kp LEFT       &kp DOWN         &kp RIGHT
             >;
             sensor-bindings = <&encoder_kp C_VOL_UP C_VOL_DN>;
         };
 
+        /* 2026-11-19: Famiの指摘(2026-08-01にLiNEA40で行ったJIS配列の差異解消作業と同じ */
+        /* 方針を踏襲)を受け、LiNEA40(famio-eng/zmk-config-LiNEA40)のMARKレイヤーを */
+        /* 3x5配置のままそのまま移植(コミットf7638bf、Projects/keyboard/LiNEA40.md参照)。 */
+        /* LiNEA40と物理ボードが異なるため、JISキーコードが同様に機能するかは実機で要確認。 */
         layer_3 {
             display-name = "Mark Layer";
             bindings = <
-                &kp LS(LG(N4))   &kp F4             &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS   &none                                                  &kp TILDE      &kp EXCLAMATION  &kp AT_SIGN        &kp HASH            &kp DOLLAR
-                &emoji           &kp F5             &kp LEFT_BRACKET      &kp RIGHT_BRACKET       &none                                                  &kp GRAVE      &kp UNDER        &kp SINGLE_QUOTE   &kp DOUBLE_QUOTES   &kp BACKSLASH
-                &kp KP_NUMLOCK   &kp F11            &kp LEFT_BRACE        &kp RIGHT_BRACE         &none                                                  &kp PIPE       &kp PERCENT      &kp CARET          &kp AMPERSAND       &kp ASTERISK
-                &trans           &trans             &kp NUMBER_0          &trans                  &kp SPACE         &trans              &trans           &kp ENTER      &trans           &none              &none               &kp F12 
+                &kp EXCLAMATION  &j_dq              &kp HASH              &kp DOLLAR              &kp PERCENT                                            &j_amp         &j_sq            &j_under           &j_tilde            &j_yen
+                &kp SLASH        &j_pipe            &j_lbrc               &j_lbkt                 &j_lp                                                  &j_eq          &j_plus          &kp MINUS          &j_caret            &j_at
+                &kp LSHIFT       &kp KP_NUMBER_1    &j_rbrc               &j_rbkt                 &j_rp                                                  &j_ast         &kp SEMICOLON    &j_colon           &kp QUESTION        &kp SLASH
+                &trans           &trans             &kp NUMBER_0          &trans                  &kp SPACE         &trans              &trans           &kp ENTER      &trans           &none              &none               &kp F12
                                                     &trans                &trans                  &trans                                                 &trans         &trans           &trans
             >;
         };
 
+        /* 2026-11-19: 実機のDYA Studio(2026-08-17時点)スクリーンショットを基に復元。 */
+        /* BT_P0〜P3(bt_p0〜p3マクロ、Macレイヤー連動含む)をrow1に、素のBT SELを */
+        /* row2/row3にも重複配置(バックアップ用の別経路)。BT_P4は使用していない。 */
         layer_4 {
             display-name = "Device Layer";
             bindings = <
-                &none            &none              &none                 &none                   &bt BT_CLR                                             &bt_p0         &bt_p1           &bt_p2             &bt_p3              &bt_p4
-                &none            &none              &none                 &none                   &none                                                  &none          &none            &none              &none               &none
-                &sys_reset       &none              &none                 &none                   &none                                                  &none          &none            &none              &none               &sys_reset
+                &bootloader      &none              &none                 &none                   &bt BT_CLR                                             &bt_p0         &bt_p1           &bt_p2             &bt_p3              &bootloader
+                &bt BT_CLR_ALL   &none              &none                 &none                   &none                                                  &bt BT_SEL 0   &bt BT_SEL 1     &bt BT_SEL 2       &bt BT_SEL 3        &bt BT_SEL 0
+                &sys_reset       &none              &none                 &none                   &none                                                  &none          &none            &bt BT_SEL 0       &bt BT_SEL 1        &bt BT_SEL 2
                 &bootloader      &bt BT_CLR_ALL     &none                 &none                   &none             &none               &studio_unlock   &none          &none            &none              &none               &bootloader
                                                     &trans                &trans                  &trans                                                 &trans         &trans           &trans
             >;
         };
 
+        /* 2026-11-19: 実機では「Scroll」という表示名。gitの旧表示名「Brank Layer」から変更。 */
+        /* このレイヤー自体のキー割当はスクショが無く未確認(全trans=現状維持)。Famiに確認要。 */
         layer_5 {
-            status = "reserved";
-            display-name = "Brank Layer";
+            display-name = "Scroll";
             bindings = <
                 &trans           &trans             &trans                &trans                  &trans                                                 &trans       &trans           &trans             &trans              &trans
                 &trans           &trans             &trans                &trans                  &trans                                                 &trans       &trans           &trans             &trans              &trans
@@ -174,6 +228,19 @@
                 &trans           &trans             &trans                &trans                  &trans                                                 &trans       &trans           &trans             &trans              &trans
                 &trans           &trans             &trans                &trans                  &trans                                                 &trans       &trans           &trans             &trans              &trans
                 &trans           &trans             &trans                &trans                  &trans            &trans              &trans           &kp LG(SPACE)  &trans           &trans             &trans              &trans
+                                                    &trans                &trans                  &trans                                                 &trans       &trans           &trans
+            >;
+        };
+
+        /* 2026-11-19: LiNEA40のMAC_MARKレイヤーを移植。MacモードかつMark Layer中のみ、 */
+        /* j_under/j_yen/j_pipeの3箇所だけをMac向けの出力に上書きする(conditional-layers)。 */
+        layer_8 {
+            display-name = "Mac Mark Override";
+            bindings = <
+                &trans           &trans             &trans                &trans                  &trans                                                 &trans       &trans           &kp INT1           &trans              &kp LA(Y)
+                &trans           &kp LS(INT3)       &trans                &trans                  &trans                                                 &trans       &trans           &trans             &trans              &trans
+                &trans           &trans             &trans                &trans                  &trans                                                 &trans       &trans           &trans             &trans              &trans
+                &trans           &trans             &trans                &trans                  &trans            &trans              &trans           &trans       &trans           &trans             &trans              &trans
                                                     &trans                &trans                  &trans                                                 &trans       &trans           &trans
             >;
         };

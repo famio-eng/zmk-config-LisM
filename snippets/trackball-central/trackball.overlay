@@ -48,4 +48,9 @@
         x-codes = <INPUT_REL_X>;
 		y-codes = <INPUT_REL_Y>;
 		xy-to-scroll-enabled;
+		// 2026-11-19: 実機のDYA Studio「🎯 Trackball Tuning」(2026-10-27時点)の設定値を
+		// settings_resetで消えないよう既定値として焼き込み。スケーリング0.12x(=3/25)、Y軸反転ON。
+		scale-multiplier = <3>;
+		scale-divisor = <25>;
+		y-invert;
 };
