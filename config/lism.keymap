@@ -141,12 +141,16 @@
             sensor-bindings = <&rsr_scrl &rsr_scrl>;
         };
 
+        /* 2026-11-19: 実機のDYA Studioエクスポート(2026-09-30スクショ、docs/restore-2026-11-19/
+           mouse-layer-2026-09-30.png)どおりに修正。旧git版はpos18/19にSCRL_UP/SCRL_DOWNが
+           入っており、一時レイヤーでMouse Layerが有効な間にScrollレイヤーアクセスキー
+           (pos19 = lt 5 BACKSPACE)を押すとスクロールダウン連打になってしまっていた。 */
         layer_1 {
             display-name = "Mouse Layer";
             bindings = <
-                &trans           &trans             &trans                &trans                  &trans                                                 &kp SPACE      &kp RG(LEFT)     &kp RG(RIGHT)      &mkp MB3            &trans
-                &mkp MB5         &trans             &trans                &trans                  &trans                                                 &kp LG(UP)     &mkp MB1         &mkp MB2           &msc SCRL_UP        &msc SCRL_DOWN
-                &mkp MB4         &trans             &trans                &trans                  &trans                                                 &kp LG(DOWN)   &kp LEFT         &kp UP             &kp RIGHT           &trans
+                &trans           &trans             &trans                &trans                  &trans                                                 &trans         &trans           &trans             &trans              &trans
+                &mkp MB5         &trans             &trans                &trans                  &trans                                                 &trans         &mkp MB1         &mkp MB2           &trans              &trans
+                &mkp MB4         &trans             &trans                &trans                  &trans                                                 &trans         &mkp MB3         &trans             &trans              &trans
                 /* この位置はDefault LayerのDevice Layerアクセスキー(row4右端)と共有。 */
                 /* Mouse Layerがアクティブな間にこのキーを押すとLG(W)(Win+W=ウィジェット)が */
                 /* 優先されてDevice Layerに入れなくなるため、&transにしてDevice Layer */
