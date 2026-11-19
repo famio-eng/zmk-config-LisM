@@ -18,13 +18,14 @@
 
         // 2026-11-19: 実機でDYA Studioのライブ設定として入れていた「ボールを動かすと
         // Mouse Layer(1)に自動遷移するtemp-layer」を既定値として焼き込み(NVS破損で消失)。
-        // activation/deactivation delayの実際の変更履歴は見つからず、
-        // zmk-module-runtime-input-processorのyaml既定値(activation 100ms / deactivation 500ms)
-        // をそのまま採用(Logs/2026-08-21.mdに「一定時間(deactivation delay、デフォルト500ms)」の記述あり、
+        // activation delayはFami/Anuviliaが実機のDYA Studio上で300msに変更し様子見中のため追随。
+        // deactivation delayの実際の変更履歴は見つからず、
+        // zmk-module-runtime-input-processorのyaml既定値(deactivation 500ms)をそのまま採用
+        // (Logs/2026-08-21.mdに「一定時間(deactivation delay、デフォルト500ms)」の記述あり、
         // 変更した形跡なし)。クリック等保護キーでの延長はfamio-engフォーク(fix/click-extends-temp-layer)で対応済み。
         temp-layer-enabled;
         temp-layer = <1>;
-        temp-layer-activation-delay-ms = <100>;
+        temp-layer-activation-delay-ms = <300>;
         temp-layer-deactivation-delay-ms = <500>;
 
         #input-processor-cells = <0>;

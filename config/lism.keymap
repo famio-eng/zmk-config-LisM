@@ -13,7 +13,7 @@
 #include <dt-bindings/zmk_behavior_default_layer/default_layer.h>
 
 &mt {
-    tapping-term-ms = <300>;
+    tapping-term-ms = <200>;
     flavor = "balanced";
 };
 
