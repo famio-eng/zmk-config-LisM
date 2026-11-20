@@ -49,12 +49,18 @@
         back_combo { bindings = <&kp BACKSPACE>; key-positions = <8 9>; };
         delete_combo { bindings = <&kp DELETE>; key-positions = <7 8>; };
         insert_combo { bindings = <&kp INSERT>; key-positions = <6 7>; };
-        /* 2026-11-19: browser_back/forwardはFamiがDYA Studioのランタイムコンボとして */
-        /* 16+17=AC_BACK、17+18=AC_FORWARDを作り直したため、二重発火を避けコンパイル済み版を削除。 */
-        /* 新規追加の16+18=F10はランタイムコンボのみで運用(コンパイル側には追加しない)。 */
+        /* 2026-11-20: ランタイムコンボのレイヤー判定がdefault-layer(&df DF_SEL経由のMacモード)を */
+        /* 正しく拾えず、Mac専用のレイヤー制限付きランタイムコンボ(16+17/17+18)が発動しないと判明。 */
+        /* screenshot_mac等と同様にコンパイル済みコンボとして実装。16+18=F10はランタイムのまま */
+        /* (レイヤー制限なしで競合しないため)。書き込み前にFamiがDYAのPrevious/Forward/ */
+        /* Mac Previous/Mac Forwardの4つ(ランタイムコンボ)を削除する予定。 */
+        mac_back { bindings = <&kp LC(LEFT)>; key-positions = <16 17>; layers = <MAC>; };
+        mac_forward { bindings = <&kp LC(RIGHT)>; key-positions = <17 18>; layers = <MAC>; };
         /* Mac以外(screenshot_mac/hankaku_zenkaku_macと同じ位置だが対象レイヤーがMac Layerを除く全レイヤーで排他) */
         screenshot_win_combo { bindings = <&kp PRINTSCREEN>; key-positions = <3 4>; layers = <0 1 2 3 4 5 7>; };
         hanzen_win_combo { bindings = <&kp GRAVE>; key-positions = <12 13>; layers = <0 1 2 3 4 5 7>; };
+        win_back { bindings = <&kp C_AC_BACK>; key-positions = <16 17>; layers = <0 1 2 3 4 5 7>; };
+        win_forward { bindings = <&kp C_AC_FORWARD>; key-positions = <17 18>; layers = <0 1 2 3 4 5 7>; };
         emoji_combo { bindings = <&kp LG(DOT)>; key-positions = <1 3>; };
         tab_combo { bindings = <&kp TAB>; key-positions = <11 12>; };
         mo_scroll_combo { bindings = <&mo 5>; key-positions = <36 37>; };
